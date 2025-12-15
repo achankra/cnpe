@@ -19,7 +19,7 @@ This course will have 10 lessons. The demos in each of the lessons are exclusive
 2.2 Golden Paths: designing opinionated self-service   
 2.3 Measuring Value: DORA/SPACE/PVM Metrics  
 2.4 Reducing Cognitive Load for developers  
-2.5 Metrics demo: visualizing deployment & recovery  
+2.5 [Metrics demo: visualizing deployment & recovery](lesson2/README.md) 
 
 ### Lesson 3: Software-Defined infrastructure (60 mins)  
 3.1 SDLC for the Platform Product   
