@@ -1,0 +1,125 @@
+# Exercise: From raw events → DORA view in 90 seconds
+
+## What this demo does
+
+This exercise demonstrates how **deployment and reliability metrics are derived from raw platform events**, not manually tracked or guessed.
+
+A small Python script generates (or can later ingest) an event stream consisting of:
+
+- `deploy`
+- `incident_start`
+- `incident_resolved`
+
+From these raw events, the script automatically:
+
+- Plots **deployments per day** (Deployment Frequency)
+- Computes and plots **MTTR per incident** (Recovery Time)
+- Overlays deployments and incidents on a **single timeline**, making the relationship between delivery and recovery visible
+
+The goal is to show how platform teams can move from *events → metrics → insight* in minutes.
+
+---
+
+## How the data works
+
+### Synthetic but realistic data
+
+The demo uses **synthetic data generated at runtime**. This allows the exercise to be:
+
+- Fast to run
+- Repeatable
+- Safe to demo live
+- Free from external dependencies
+
+Even though the data is synthetic, the **metric pipeline is identical to real systems**. In production, the same logic would apply to:
+
+- CI/CD logs (GitHub Actions, GitLab, Argo, Spinnaker)
+- Incident systems (PagerDuty, OpsGenie, ServiceNow)
+- Observability pipelines (logs, events, traces)
+
+Only the **event source** changes — not the metric logic.
+
+---
+
+## What does `--seed` do?
+
+The script uses a random number generator to simulate deployments and incidents.
+
+```bash
+python metrics_demo.py --seed 42
+python metrics_demo.py --seed 7
+
+seed controls the random data generation
+
+The same seed always produces the same dataset
+
+Changing the seed produces a different but still repeatable scenario
+
+This is useful for:
+
+Showing “before vs after” stories
+
+Avoiding surprises in live demos
+
+Demonstrating how metrics shift under different operating conditions
+
+Think of the seed as selecting a different delivery universe.
+
+Why this matters (Lesson 2 takeaway)
+
+This exercise reinforces a core platform engineering principle:
+
+Metrics don’t magically exist — they are computed from events your platform already emits.
+
+By visualizing deployment frequency and MTTR together:
+
+Teams see how delivery and recovery interact
+
+Leaders understand why platform investments matter
+
+Platform teams can reason about impact, not just tooling
+
+Setup
+pip install pandas matplotlib
+python metrics_demo.py
+
+
+Optional:
+
+python metrics_demo.py --days 21 --seed 7
+
+Output
+
+The script renders three charts:
+
+Deployment Frequency
+
+Deployments per day over time
+
+Recovery (MTTR)
+
+Each dot represents the recovery time of an incident
+
+Timeline Overlay
+
+Deployments shown as ticks
+
+Incidents shown as recovery bars
+
+A single view of deploys vs recoveries
+
+Together, these charts tell the full deployment & recovery story at a glance.
+
+Next steps (optional extensions)
+
+This demo can be easily extended to:
+
+Read from a CSV or JSON event log
+
+Parse real CI/CD or incident exports
+
+Feed metrics into Grafana or a platform portal
+
+Compare baseline vs “golden path” adoption
+
+The structure stays the same — only the event source evolves.
