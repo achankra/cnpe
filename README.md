@@ -12,7 +12,7 @@ This course will have 10 lessons. The demos in each of the lessons are exclusive
 1.2 The Platform-as-a-Product: Roles, MVPs and value  
 1.3 Core principles of platform engineering  
 1.4 Platform Engineering vs. DevOps and SRE  
-1.5 Backstage demo: service catalog and self-service paths  
+1.5 [Backstage demo: service catalog and self-service paths](https://portal.platformetrics.com/)  
 
 ### Lesson 2: Increasing value & eliminating friction (60 mins)
 2.1 Value Stream Mapping: mapping path to production  
