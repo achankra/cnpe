@@ -1,7 +1,7 @@
 # Exercise: Metrics demo: visualizing deployment & recovery
 
 
-## What this demo does
+## What this Lesson2 demo does
 
 This exercise demonstrates how **deployment and reliability metrics are derived from raw platform events**, not manually tracked or guessed. It translates raw events → DORA view in 90 seconds with synthetic data
 
