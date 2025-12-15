@@ -1,0 +1,20 @@
+repos:
+  - repo: local
+    hooks:
+      - id: terraform-validate
+        name: terraform validate (fmt+init+validate)
+        entry: scripts/validate.sh
+        language: system
+        pass_filenames: false
+
+      - id: tflint
+        name: tflint
+        entry: scripts/lint.sh
+        language: system
+        pass_filenames: false
+
+      - id: trivy-config
+        name: trivy config scan
+        entry: scripts/scan.sh
+        language: system
+        pass_filenames: false
