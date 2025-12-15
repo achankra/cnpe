@@ -1,8 +1,9 @@
-# Exercise: From raw events → DORA view in 90 seconds with synthetic data
+# Exercise: Metrics demo: visualizing deployment & recovery
+
 
 ## What this demo does
 
-This exercise demonstrates how **deployment and reliability metrics are derived from raw platform events**, not manually tracked or guessed.
+This exercise demonstrates how **deployment and reliability metrics are derived from raw platform events**, not manually tracked or guessed. It translates raw events → DORA view in 90 seconds with synthetic data
 
 A small Python script generates (or can later ingest) an event stream consisting of:
 
@@ -79,9 +80,10 @@ The script renders three charts:
 2. Recovery (MTTR)
 
 ### Timeline Overlay
--Each dot represents the recovery time of an incident
--Deployments shown as ticks
--Incidents shown as recovery bars
--A single view of deploys vs recoveries
+
+1. Each dot represents the recovery time of an incident  
+2. Deployments shown as ticks  
+3. Incidents shown as recovery bars  
+4. A single view of deploys vs recoveries  
 
 Together, these charts tell the full deployment & recovery story at a glance.
