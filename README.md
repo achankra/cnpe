@@ -25,7 +25,7 @@ This course will have 10 lessons. The demos in each of the lessons are exclusive
 3.1 SDLC for the Platform Product   
 3.2 Platform product domains and boundaries  
 3.3 Infrastructure Pipelines: DRY, TDD, Smart Scripts  
-3.4  IaC validation demo: testing & security automation  
+3.4  [IaC validation demo: testing & security automation](lesson3/README.md)
 
 ## Module 2: Platform architecture and operations  
 
