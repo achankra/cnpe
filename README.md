@@ -35,7 +35,7 @@ This course will have 10 lessons. The demos in each of the lessons are exclusive
 4.2 Networking and Identity Foundations  
 4.3 The Control Plane Base: Managed service deployment  
 4.4 OIDC Device-Auth-Flow for access control  
-4.5 Identity demo: secure cluster access with SSO  
+4.5 [Identity demo: secure cluster access with SSO](lesson4/README.md)  
 
 ### Lesson 5: Governance, Trust, and Compliance (60 mins)  
 5.1 Balancing autonomy and control  
