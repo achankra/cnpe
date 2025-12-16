@@ -1,0 +1,25 @@
+{
+  "kind": "Deployment",
+  "metadata": {
+    "name": "payments-api",
+    "labels": {
+      "environment": "prod"
+    }
+  },
+  "spec": {
+    "template": {
+      "spec": {
+        "containers": [
+          {
+            "name": "app",
+            "image": "ghcr.io/example/payments-api:latest",
+            "resources": {
+              "requests": { "cpu": "100m" },
+              "limits":   { "cpu": "200m" }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

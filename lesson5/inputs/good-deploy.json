@@ -1,0 +1,29 @@
+{
+  "kind": "Deployment",
+  "metadata": {
+    "name": "payments-api",
+    "labels": {
+      "team": "payments-team",
+      "environment": "prod"
+    }
+  },
+  "spec": {
+    "template": {
+      "spec": {
+        "securityContext": {
+          "runAsNonRoot": true
+        },
+        "containers": [
+          {
+            "name": "app",
+            "image": "ghcr.io/example/payments-api:1.2.3",
+            "resources": {
+              "requests": { "cpu": "100m", "memory": "256Mi" },
+              "limits":   { "cpu": "200m", "memory": "512Mi" }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
