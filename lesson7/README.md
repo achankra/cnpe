@@ -1,13 +1,8 @@
-# Lesson 7 – Platform APIs & Self-Service Provisioning  
+# Lesson 7 – Demo: Self-service resource provisioning
+
 **From Tickets to APIs**
 
-This lesson demonstrates how platform teams enable **self-service infrastructure**
-using **well-designed Platform APIs**, instead of ticket-driven workflows.
-
-The demo shows how developers can provision resources in seconds using a
-**contract-first API**, while the platform hides complexity and enforces guardrails.
-
----
+This lesson demonstrates how platform teams enable **self-service infrastructure** using **well-designed Platform APIs**, instead of ticket-driven workflows. The demo shows how developers can provision resources in seconds using a **contract-first API**, while the platform hides complexity and enforces guardrails.
 
 ## Learning Objectives
 
@@ -20,9 +15,7 @@ By the end of this lesson, students will understand:
 - The **80/20 rule** in platform API design
 - Why OpenAPI is critical for platform products
 
----
-
-## What This Demo Shows
+## What This Demo Shows?
 
 This demo simulates a **Platform Provisioning API** that allows developers to:
 
@@ -31,76 +24,46 @@ This demo simulates a **Platform Provisioning API** that allows developers to:
 - Check status without waiting for humans
 - Avoid dealing with Terraform, kubectl, or cloud IAM directly
 
-This is **not** about infrastructure automation tools.  
-It’s about **how platforms present capabilities**.
-
----
+This is **not** about infrastructure automation tools.  It’s about **how platforms present capabilities**.
 
 ## Folder Structure
-
+```
 lesson7/
-├── api-demo/
 │ ├── main.py # Platform API (FastAPI)
 │ └── README.md
-└── README.md
-
-yaml
-Copy code
-
----
+```
 
 ## Core Idea: Platform API as Product
 
-In a ticket-driven world:
-
-Developer → Ticket → Waiting → Manual Work → Days/Weeks
-
-css
-Copy code
-
-In a platform-driven world:
-
-Developer → API Call → Instant Feedback → Self-Service
-
-yaml
-Copy code
+### In a ticket-driven world: Developer → Ticket → Waiting → Manual Work → Days/Weeks  
+### In a platform-driven world: Developer → API Call → Instant Feedback → Self-Service
 
 The API is the **product interface**.
 
----
+## How to Run the Demo?
 
-## How to Run the Demo
-
-From `lesson7/api-demo`:
-
-```bash
+```
 python3 -m venv .venv
 source .venv/bin/activate
 pip install fastapi uvicorn pydantic
 uvicorn main:app --reload --port 8080
-Explore the API Contract (Design-First)
-Open in your browser:
+```
 
-Swagger UI
-http://127.0.0.1:8080/docs
+- Explore the API Contract (Design-First)  
+- Open in your browser:  
+  -- Swagger UI :  http://127.0.0.1:8080/docs  
+  -- OpenAPI spec: http://127.0.0.1:8080/openapi.json  
+  
+**This contract is what**
 
-OpenAPI spec
-http://127.0.0.1:8080/openapi.json
+- Developers depend on  
+- Docs are generated from  
+- SDKs can be created from  
 
-This contract is what:
+## Demo Calls (Run These Live)
 
-Developers depend on
-
-Docs are generated from
-
-SDKs can be created from
-
-Platform guarantees stability for
-
-Demo Calls (Run These Live)
-1️⃣ Simple self-service request (80% path)
-bash
-Copy code
+**1. Simple self-service request (80% path)** 
+```
 curl http://127.0.0.1:8080/provision-requests \
   -H "Content-Type: application/json" \
   -d '{
@@ -108,19 +71,16 @@ curl http://127.0.0.1:8080/provision-requests \
     "env": "dev",
     "resource_type": "k8s-namespace"
   }'
-What this shows
+```
+### What this shows?
 
-Safe defaults
+- Safe defaults  
+- Minimal input  
+- Immediate success  
+- No infrastructure knowledge required (DevEx improvement!)  
 
-Minimal input
-
-Immediate success
-
-No infrastructure knowledge required
-
-2️⃣ Advanced controls (20% path)
-bash
-Copy code
+**2. Advanced controls (20% path)**
+```
 curl http://127.0.0.1:8080/provision-requests \
   -H "Content-Type: application/json" \
   -d '{
@@ -134,19 +94,17 @@ curl http://127.0.0.1:8080/provision-requests \
       }
     }
   }'
-What this shows
+```
 
-Power-user flexibility
+### What this shows?
 
-Controlled extensibility
+- Power-user flexibility  
+- Controlled extensibility  
+- No raw Terraform or kubectl exposure  
+- Platform remains opinionated  
 
-No raw Terraform or kubectl exposure
-
-Platform remains opinionated
-
-3️⃣ Intentional failure (actionable error messaging)
-bash
-Copy code
+**3. Intentional failure (actionable error messaging)**
+```
 curl http://127.0.0.1:8080/provision-requests \
   -H "Content-Type: application/json" \
   -d '{
@@ -154,73 +112,47 @@ curl http://127.0.0.1:8080/provision-requests \
     "env": "dev",
     "resource_type": "s3-bucket"
   }'
-What this shows
+```
 
-Guardrails enforced at the API
+### What this shows?
 
-Clear, actionable error messages
+- Guardrails enforced at the API  
+- Clear, actionable error messages  
+- No silent failures or tickets  
 
-No silent failures or tickets
-
-4️⃣ List provisioning requests (visibility without tickets)
-bash
-Copy code
+**4. List provisioning requests (visibility without tickets)**
+   
+```
 curl http://127.0.0.1:8080/provision-requests
-What this shows
+```
 
-Transparency
+### What this shows?
 
-Async-friendly workflows
+- Transparency  
+- Async-friendly workflows  
+- Status visibility without human intervention  
 
-Status visibility without human intervention
+## Summary
 
-What to Say During the Demo (Key Teaching Script)
-Use this while showing Swagger UI and making the calls:
+- The platform is not Terraform or Kubernetes. The platform is the API.  
+- Developers don’t want to learn infrastructure internals. They want outcomes.  
+- This API hides complexity and exposes value: a resource name, a status, and what to do next.  
+- Notice the 80/20 rule: simple defaults for most teams, optional advanced controls for power users.  
+- This is how we go from weeks of waiting to seconds of self-service.
 
-“The platform is not Terraform or Kubernetes.
-The platform is the API.”
+### Why This Matters
 
-“Developers don’t want to learn infrastructure internals.
-They want outcomes.”
+**Without platform APIs** 
 
-“This API hides complexity and exposes value:
-a resource name, a status, and what to do next.”
+-- Platform teams become ticket bottlenecks  
+-- Knowledge becomes tribal  
+-- Velocity stalls as scale increases  
 
-“Notice the 80/20 rule:
-simple defaults for most teams, optional advanced controls for power users.”
+**With platform APIs**
 
-“This is how we go from weeks of waiting
-to seconds of self-service.”
+-- Self-service becomes the default  
+-- Guardrails are enforced automatically  
+-- Platform teams scale impact without scaling headcount  
 
-Why This Matters
-Without platform APIs:
 
-Platform teams become ticket bottlenecks
-
-Knowledge becomes tribal
-
-Velocity stalls as scale increases
-
-With platform APIs:
-
-Self-service becomes the default
-
-Guardrails are enforced automatically
-
-Platform teams scale impact without scaling headcount
-
-This is how platform engineering enables flow.
-
-Key Takeaways
-APIs are the interface of the platform
-
-Self-service replaces ticket-driven operations
-
-Hide complexity, expose outcomes
-
-Design APIs first, implement later
-
-Apply the 80/20 rule to platform capabilities
-
-Platform APIs turn infrastructure into a product
 
