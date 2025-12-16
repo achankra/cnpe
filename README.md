@@ -55,7 +55,7 @@ This course will have 10 lessons. The demos in each of the lessons are exclusive
 7.2 API-First Platform Delivery  
 7.3 Platform Management APIs  
 7.4 Custom orchestration APIs  
-7.5 API Demo: Self-service resource provisioning  
+7.5 [API Demo: Self-service resource provisioning](lesson7/README.md)
 
 ## Module 3: Scaling cloud native platform engineering  
 
