@@ -42,7 +42,7 @@ This course will have 10 lessons. The demos in each of the lessons are exclusive
 5.2 Compliance at the Point of Change  
 5.3 Software Supply Chain Security  
 5.4 Policy-as-Code and resource governance  
-5.5 Compliance demo: automated policy enforcement  
+5.5 [Compliance demo: automated policy enforcement](lesson5/README.md)  
 
 ### Lesson 6: Observability & Reliability (60 mins)  
 6.1 Observability-Driven Development (ODD)  
