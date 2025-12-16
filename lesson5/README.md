@@ -1,4 +1,5 @@
-# Lesson 5 – Governance, Trust & Compliance  
+# Lesson 5 – Compliance demo: automated policy enforcement
+
 **Automated Policy Enforcement at the Point of Change**
 
 This lesson demonstrates how modern platform teams replace manual governance with **automated, version-controlled guardrails** that provide instant feedback
