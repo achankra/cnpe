@@ -1,0 +1,8 @@
+{"ts":"03:00","service":"payments-api","level":"INFO","msg":"request received","route":"/checkout","orderId":"o-1001"}
+{"ts":"03:00","service":"payments-api","level":"WARN","msg":"retrying upstream call","upstream":"inventory","attempt":2,"orderId":"o-1001"}
+{"ts":"03:01","service":"payments-api","level":"ERROR","msg":"upstream timeout","upstream":"inventory","timeout_ms":200,"orderId":"o-1001"}
+{"ts":"03:01","service":"payments-api","level":"ERROR","msg":"request failed","route":"/checkout","status":500,"orderId":"o-1001"}
+{"ts":"03:02","service":"payments-api","level":"INFO","msg":"request received","route":"/checkout","orderId":"o-1002"}
+{"ts":"03:02","service":"payments-api","level":"WARN","msg":"retrying upstream call","upstream":"inventory","attempt":3,"orderId":"o-1002"}
+{"ts":"03:02","service":"payments-api","level":"ERROR","msg":"circuit open","upstream":"inventory","orderId":"o-1002"}
+{"ts":"03:02","service":"payments-api","level":"ERROR","msg":"request failed","route":"/checkout","status":503,"orderId":"o-1002"}

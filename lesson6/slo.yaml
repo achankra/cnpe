@@ -1,0 +1,9 @@
+service: payments-api
+sli:
+  description: "Percentage of successful requests"
+  good_events: "status < 500"
+  total_events: "all requests"
+
+slo:
+  target: 99.9
+  window: 30d

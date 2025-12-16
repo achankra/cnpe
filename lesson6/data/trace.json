@@ -1,0 +1,14 @@
+{
+  "traceId": "t-abc123",
+  "rootSpan": {
+    "name": "POST /checkout",
+    "duration_ms": 520,
+    "spans": [
+      {"name":"auth.verifyToken","duration_ms":12},
+      {"name":"cart.get","duration_ms":20},
+      {"name":"inventory.reserve","duration_ms":410, "error":"timeout"},
+      {"name":"payments.charge","duration_ms":35},
+      {"name":"db.writeOrder","duration_ms":18}
+    ]
+  }
+}
