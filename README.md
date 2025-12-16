@@ -1,4 +1,4 @@
-# Cloud Native Platform Engineering Course from Pearson
+# Cloud Native Platform Engineering Course
 
 This repository is the companion repo for the CNPE course from Pearson. Each of the folders in this repo stands for each of the lessons. Course materials are available from Pearson/O'Reilly platform and informIT
 
