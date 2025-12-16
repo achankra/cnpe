@@ -48,7 +48,7 @@ This course will have 10 lessons. The demos in each of the lessons are exclusive
 6.1 Observability-Driven Development (ODD)  
 6.2 SLIs, SLOs, and Error Budgets  
 6.3 Shared Responsibility model  
-6.4 SLO demo: automated error budget monitoring  
+6.4 [SLO demo: automated error budget monitoring](lesson6/README.md)
 
 ### Lesson 7: Platform APIs (60 mins)  
 7.1 Services vs. Extensions for scale  
