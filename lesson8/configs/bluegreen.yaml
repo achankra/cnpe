@@ -1,0 +1,10 @@
+service: orders
+host: orders.api.platform.local
+
+security:
+  tls: true
+
+traffic:
+  strategy: bluegreen
+  active_color: blue
+  allow_header_override: true

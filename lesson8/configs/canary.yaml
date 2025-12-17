@@ -1,0 +1,9 @@
+service: orders
+host: orders.api.platform.local
+
+security:
+  tls: true
+
+traffic:
+  strategy: canary
+  canary_percentage: 20
