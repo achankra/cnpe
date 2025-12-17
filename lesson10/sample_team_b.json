@@ -1,0 +1,18 @@
+{
+  "team": "Search",
+  "signals": {
+    "golden_path_adoption_pct": 70,
+    "policy_violations_per_week": 6,
+    "slo_burn_rate": 0.6,
+    "onboarding_days": 4,
+    "platform_nps": 45
+  },
+  "capabilities": {
+    "self_service_provisioning": true,
+    "policy_as_code": true,
+    "slo_defined": true,
+    "deploy_markers": true,
+    "feedback_program": true,
+    "platform_pm_process": true
+  }
+}

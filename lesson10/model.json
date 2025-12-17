@@ -1,0 +1,57 @@
+{
+  "categories": {
+    "SelfService": { "weight": 0.20 },
+    "Governance": { "weight": 0.15 },
+    "Observability": { "weight": 0.20 },
+    "Automation": { "weight": 0.15 },
+    "FeedbackLoops": { "weight": 0.15 },
+    "PlatformProduct": { "weight": 0.15 }
+  },
+  "rules": [
+    {
+      "id": "R1",
+      "when": { "golden_path_adoption_pct": { "lt": 40 } },
+      "severity": "HIGH",
+      "category": "SelfService",
+      "signal": "Low golden path adoption",
+      "why": "Developers are bypassing the paved road, increasing cognitive load and inconsistency.",
+      "recommendation": "Improve the golden path UX, remove steps, publish examples, and measure adoption weekly."
+    },
+    {
+      "id": "R2",
+      "when": { "policy_violations_per_week": { "gt": 20 } },
+      "severity": "HIGH",
+      "category": "Governance",
+      "signal": "High policy violation rate",
+      "why": "Guardrails exist but aren’t integrated early enough or are too hard to follow.",
+      "recommendation": "Shift-left: run policy checks in CI, add templates, and make the compliant path the easiest path."
+    },
+    {
+      "id": "R3",
+      "when": { "slo_burn_rate": { "gt": 1.0 } },
+      "severity": "HIGH",
+      "category": "Observability",
+      "signal": "Error budget burn",
+      "why": "Reliability is trending down; shipping should slow until burn is controlled.",
+      "recommendation": "Create top SLOs, gate risky releases when burn rate > 1, and correlate incidents with deploys."
+    },
+    {
+      "id": "R4",
+      "when": { "onboarding_days": { "gt": 7 } },
+      "severity": "MEDIUM",
+      "category": "SelfService",
+      "signal": "Slow onboarding",
+      "why": "High friction in developer journey indicates missing self-service and documentation quality.",
+      "recommendation": "Add a single onboarding golden path with templates + scripts; measure time-to-first-PR."
+    },
+    {
+      "id": "R5",
+      "when": { "platform_nps": { "lt": 20 } },
+      "severity": "HIGH",
+      "category": "FeedbackLoops",
+      "signal": "Low platform NPS",
+      "why": "Qualitative feedback indicates friction; roadmap may not reflect developer pain.",
+      "recommendation": "Run monthly user interviews + quarterly surveys; publish a public roadmap and close the loop."
+    }
+  ]
+}

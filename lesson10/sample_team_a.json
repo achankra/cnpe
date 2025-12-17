@@ -1,0 +1,18 @@
+{
+  "team": "Payments",
+  "signals": {
+    "golden_path_adoption_pct": 55,
+    "policy_violations_per_week": 35,
+    "slo_burn_rate": 1.4,
+    "onboarding_days": 12,
+    "platform_nps": 10
+  },
+  "capabilities": {
+    "self_service_provisioning": true,
+    "policy_as_code": true,
+    "slo_defined": true,
+    "deploy_markers": true,
+    "feedback_program": false,
+    "platform_pm_process": false
+  }
+}

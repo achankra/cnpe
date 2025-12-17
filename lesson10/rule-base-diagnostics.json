@@ -1,0 +1,10 @@
+,
+{
+  "id": "R6",
+  "when": { "onboarding_days": { "gt": 10 } },
+  "severity": "MEDIUM",
+  "category": "SelfService",
+  "signal": "Very slow developer onboarding",
+  "why": "Long onboarding time indicates missing automation, unclear documentation, or lack of golden paths.",
+  "recommendation": "Create a single-click onboarding flow with templates, scripts, and a documented first-PR journey."
+}
