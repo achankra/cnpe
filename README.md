@@ -64,19 +64,19 @@ This course will have 10 lessons. The demos in each of the lessons are exclusive
 8.2 DNS and Certificate Automation  
 8.3 Platform CLIs  as a self-serve touchpoint  
 8.4 Accelerators and Starter Kits  
-8.5 Automation demo: secure ingress and traffic control  
+8.5 [Automation demo: secure ingress and traffic control](lesson8/README.md)
 
 ### Lesson 9: Scaling Platforms (60 mins)  
 9.1 Scaling Control Plane Roles  
 9.2 Dynamic Release Pipelines  
 9.3 Event-Driven Platform Architecture  
 9.4 Operators for stateful workloads  
-9.5 Automation demo: event-driven pipelines  
+9.5 [Automation demo: event-driven pipelines](lesson9/README.md)
 
 ### Lesson 10: Future of DevEx (60 mins)  
 10.1 Cultural Shifts & Team Topologies  
 10.2 IDPs vs. Developer Portals  
 10.3 AI driven automation and insights  
 10.4 Continuous Feedback and platform evolution  
-10.6 AI demo: intelligent diagnostics & maturity tracking  
+10.6 [AI demo: intelligent diagnostics & maturity tracking](lesson10/README.md)
 
