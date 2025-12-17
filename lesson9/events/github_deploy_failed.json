@@ -1,0 +1,13 @@
+{
+  "deployment": {
+    "id": "run-1002",
+    "status": "failure",
+    "service": "orders",
+    "environment": "prod",
+    "version": "1.2.4",
+    "commit": "d4e5f6g",
+    "actor": "ci-bot",
+    "run_url": "https://ci.example/runs/1002",
+    "reason": "Health checks failed in us-east-1"
+  }
+}
