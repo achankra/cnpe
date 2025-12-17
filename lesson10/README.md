@@ -1,15 +1,7 @@
-# Lesson 10 – Future of Developer Experience  
-**AI Demo: Intelligent Diagnostics & Maturity Tracking**
+# Lesson 10 – AI demo: intelligent diagnostics & maturity tracking
 
-This lesson demonstrates how platform teams can use **intelligent diagnostics**
-to continuously assess platform maturity, detect friction, and prioritize
+This lesson demonstrates how platform teams can use **intelligent diagnostics** to continuously assess platform maturity, detect friction, and prioritize
 improvements.
-
-The demo is intentionally **simple, transparent, and deterministic**.  
-It shows how *rule-based intelligence* forms the foundation for future
-AI and RAG-based systems — without hiding logic behind a black box.
-
----
 
 ## Learning Objectives
 
@@ -21,8 +13,6 @@ By the end of this lesson, students will understand:
 - How rules and signals create feedback loops
 - How this model evolves toward AI and RAG systems
 - Why AI should **augment**, not replace, human judgment
-
----
 
 ## Core Idea
 
@@ -36,33 +26,25 @@ Platform teams should ask:
 
 This demo converts **signals → diagnostics → actions**.
 
----
-
 ## Folder Structure
+```
 
 lesson10/
-├── maturity_demo/
-│ ├── ai_diagnose.py
-│ ├── model.json
-│ ├── sample_team_a.json
-│ └── sample_team_b.json
-└── README.md
+ ├── ai_diagnose.py
+ ├── model.json
+ ├── sample_team_a.json
+ └── sample_team_b.json
+ └── README.md
 
-yaml
-Copy code
-
----
+```
 
 ## Demo Overview
 
 The demo takes:
 
-- Quantitative signals  
-  (onboarding time, golden path adoption, policy violations, SLO burn rate)
-- Qualitative signals  
-  (platform NPS, feedback maturity)
-- Capability flags  
-  (self-service, policy as code, SLOs)
+1. Quantitative signals    (onboarding time, golden path adoption, policy violations, SLO burn rate)
+2. Qualitative signals    (platform NPS, feedback maturity)
+3. Capability flags    (self-service, policy as code, SLOs)
 
 And produces:
 
@@ -73,68 +55,59 @@ And produces:
 
 No machine learning models are required.
 
----
-
 ## Running the Demo
 
-From `lesson10/maturity_demo`:
+```
+python3 ai_diagnose.py model.json sample_team_a.json
+```
 
-```bash
+## Demo Calls (Run These Live)
+
+**1. Diagnose a struggling team** 
+
+```
 python3 ai_diagnose.py model.json sample_team_a.json
-Demo Calls (Run These Live)
-1️⃣ Diagnose a struggling team
-bash
-Copy code
-python3 ai_diagnose.py model.json sample_team_a.json
+```
+
 You will see:
 
-Low maturity score
+- Low maturity score
+- Multiple HIGH-severity findings
+- Clear explanations and recommendations
 
-Multiple HIGH-severity findings
-
-Clear explanations and recommendations
-
-2️⃣ Diagnose a healthier team
-bash
-Copy code
+ **2. Diagnose a healthier team**
+```
 python3 ai_diagnose.py model.json sample_team_b.json
+```
 You will see:
+- Higher maturity score
+- Fewer or no diagnostics
+- Reinforcement of good practices
 
-Higher maturity score
+**3. Improve a signal and re-run**
 
-Fewer or no diagnostics
-
-Reinforcement of good practices
-
-3️⃣ Improve a signal and re-run
 Edit sample_team_a.json:
 
-json
-Copy code
+```
 "golden_path_adoption_pct": 25
+```
+
 Change to:
-
-json
-Copy code
+```
 "golden_path_adoption_pct": 55
-Re-run:
 
-bash
-Copy code
 python3 ai_diagnose.py model.json sample_team_a.json
-Notice:
+```
+You will see:
 
-Maturity score increases
+- Maturity score increases
+- Related diagnostics disappear
+- This demonstrates a tight feedback loop.
 
-Related diagnostics disappear
+**4. Add a new diagnostic rule from rule-based-diagnostics.json (show evolution)** 
+Add the new rule to model.json (for example, alert on slow onboarding):
 
-This demonstrates a tight feedback loop.
-
-4️⃣ Add a new diagnostic rule (show evolution)
-Add a new rule to model.json (for example, alert on slow onboarding):
-
-json
-Copy code
+```
 {
   "id": "R6",
   "when": { "onboarding_days": { "gt": 10 } },
@@ -144,70 +117,36 @@ Copy code
   "why": "Long onboarding time indicates missing automation or unclear documentation.",
   "recommendation": "Create a single golden onboarding path with templates and scripts."
 }
+```
 Re-run the same command:
-
-bash
-Copy code
+```
 python3 ai_diagnose.py model.json sample_team_a.json
-✔ No code changes
-✔ Diagnostics adapt automatically
+```
 
-Important Clarification: This Is Not RAG (Yet)
-This demo uses rule-based diagnostics, not Retrieval-Augmented Generation (RAG).
+- No code changes
+- Diagnostics adapt automatically
+- This demo uses rule-based diagnostics, not Retrieval-Augmented Generation (RAG).
+- These Rules like R6 are RAG-ready building blocks — the decision layer that future LLM and RAG systems plug into.
 
-Rules detect patterns
 
-Explanations are deterministic
+## Summary 
+- This is a maturity scorecard, not a dashboard.
+- The intelligence is transparent. If it flags something, we can explain exactly why.
+- Notice that we evolve the diagnostic model without changing code.
+- This is how platforms continuously improve without rewriting pipelines.
 
-Recommendations are explainable
+### Why This Matters for DevEx
 
-This is intentional.
+- Developer experience improves through feedback loops
+- Mature platforms measure and adapt continuously
+- AI accelerates insight, not decision-making
+- Explainability builds trust
+- This is the future of platforms as products.
 
-Rules like R6 are RAG-ready building blocks — the decision layer that future
-LLM and RAG systems plug into.
+## Key Takeaways
 
-How This Evolves Toward RAG
-In a real platform, the same diagnostic trigger could:
-
-Retrieve onboarding docs, runbooks, and past incidents
-
-Inject that context into an LLM prompt
-
-Generate tailored recommendations per team
-
-The contract stays the same.
-Only the intelligence behind it evolves.
-
-What to Say During the Demo (Key Teaching Script)
-“This is a maturity scorecard, not a dashboard.”
-
-“The intelligence is transparent.
-If it flags something, we can explain exactly why.”
-
-“Notice that we evolve the diagnostic model
-without changing code.”
-
-“This is how platforms continuously improve
-without rewriting pipelines.”
-
-Why This Matters for DevEx
-Developer experience improves through feedback loops
-
-Mature platforms measure and adapt continuously
-
-AI accelerates insight, not decision-making
-
-Explainability builds trust
-
-This is the future of platforms as products.
-
-Key Takeaways
-Intelligent diagnostics turn signals into action
-
-Rules provide explainable, trustworthy intelligence
-
-Maturity tracking guides investment decisions
-
-Feedback loops drive continuous improvement
-
-Rule-based systems are the foundation for future RAG
+- Intelligent diagnostics turn signals into action
+- Rules provide explainable, trustworthy intelligence
+- Maturity tracking guides investment decisions
+- Feedback loops drive continuous improvement
+- Rule-based systems are the foundation for future RAG
