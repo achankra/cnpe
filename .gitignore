@@ -8,3 +8,8 @@ crash.*.log
 
 # OS
 .DS_Store
+# Local Claude workspace
+.claude/
+
+# Python bytecode cache
+__pycache__/
