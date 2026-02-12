@@ -98,16 +98,6 @@ python3 metrics_demo.py --seed 42   # Load with seed 42
 python3 metrics_demo.py --seed 7    # Load with seed 7
 ```
 
-### Interactive Seed Changes (In Dashboard)
-
-**No restart needed!** Once the dashboard opens:
-
-1. Type a new seed number in the **Seed: input field** (bottom left)
-2. Press **Enter** or click **Refresh**
-3. All metrics update instantly while you stay on your current tab
-
-This makes demos seamless—switch between scenarios in seconds without relaunching the app.
-
 ### What Seeds Control
 
 Same seed = identical dataset (reproducible for demos)
@@ -185,13 +175,6 @@ Try these seeds to explore different operational scenarios:
 | **1** | Early stage | Lower metrics across all frameworks, room for improvement |
 | **100** | Mature platform | Elite DORA (5+ deploys/day), strong SPACE, healthy PVM ratios |
 
-**Pro Tip for Demos:**
-1. Start with seed 42 (default)
-2. Switch to DORA tab, show deployment trends
-3. Switch to SPACE tab, highlight satisfaction vs. incidents correlation
-4. Switch to PVM tab, compare with business targets (1000% VCR, 30% IAR, <10% DTR)
-5. Try seed 7 to show degradation when incidents spike
-6. Try seed 99 to show ideal metrics
 
 ## Output & Visualization
 
