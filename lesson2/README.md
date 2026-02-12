@@ -63,7 +63,7 @@ Measures how fast and stable you ship (from [DORA Research](https://dora.dev)).
 
 ### SPACE Framework (Team & Developer Health)
 
-Measures the human side of productivity (from [Forsgren et al., 2021](https://dl.acm.org/doi/10.1145/3454122.3454151)).
+Measures the human side of productivity (from [Forsgren et al., 2021](https://getdx.com/blog/space-metrics/).
 
 | Dimension | What It Measures | Example Metric |
 |-----------|-----------------|-----------------|
