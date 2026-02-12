@@ -218,3 +218,43 @@ VCR: 129% | Platform hours invested: 77
 IAR: -15.0% | First period: 40 deploys | Second period: 34 deploys
 DTR: 0.0% | Toil: 16 min | Feature: 95040 min
 ```
+
+## Code Functions Overview
+
+### Event Generation & Data Processing
+
+| Function | Purpose |
+|----------|---------|
+| `generate_events(days, seed)` | Creates synthetic event stream (deploys, incidents, PRs, surveys) with realistic correlations |
+| `to_dataframe(events)` | Converts event list to pandas DataFrame with UTC timestamps |
+
+### DORA Metrics
+
+| Function | Purpose |
+|----------|---------|
+| `compute_deployments_per_day(df)` | Counts daily deployments, returns deployment frequency |
+| `compute_mttr(df)` | Pairs incident start/end events, calculates recovery time |
+
+### SPACE Framework
+
+| Function | Purpose |
+|----------|---------|
+| `compute_activity_metrics(df)` | Daily PR creation and code review counts |
+| `compute_collaboration_metrics(df)` | Weekly code review turnaround time (created → reviewed) |
+| `compute_satisfaction_metrics(df)` | Weekly average developer satisfaction survey scores (1-5) |
+| `compute_efficiency_metrics(df)` | Weekly PR merge time (created → merged) with variance |
+| `compute_performance_metrics(df, mttr)` | Incident rate per deployment and reliability metrics |
+
+### Platform Value Metrics (PVM)
+
+| Function | Purpose |
+|----------|---------|
+| `compute_pvm_vcr(df)` | Value to Cost Ratio: platform value / investment cost |
+| `compute_pvm_iar(df, days)` | Innovation Adoption Rate: period-over-period deployment growth |
+| `compute_pvm_dtr(df)` | Developer Toil Ratio: incident response time vs. feature work time |
+
+### Visualization
+
+| Function | Purpose |
+|----------|---------|
+| `plot_dashboard(days)` | Creates interactive 3-tab dashboard (DORA, SPACE, PVM) with live seed controls |
