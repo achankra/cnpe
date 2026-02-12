@@ -55,7 +55,7 @@ Only the **event source** changes—not the metric logic. This demo proves the m
 
 ### DORA Metrics (Delivery & Reliability)
 
-Measures how fast and stable you ship.
+Measures how fast and stable you ship (from [DORA Research](https://dora.dev)).
 
 - **Deployment Frequency**: How many times per day does code reach production?
 - **MTTR (Mean Time to Recovery)**: How quickly can you resolve incidents?
@@ -77,7 +77,7 @@ Measures the human side of productivity (from [Forsgren et al., 2021](https://dl
 
 ### Platform Value Metrics (PVM)
 
-Measures ROI of platform investments (from [Skelton & Pais, 2023](https://teamtopologies.com/publications)).
+Measures ROI of platform investments (from [Chankramath & Kotagiri, 2023](https://itrevolution.com/product/value-internal-developer-platform-investments/)).
 
 | Metric | Formula | Default | Target | Meaning |
 |--------|---------|---------|--------|---------|
