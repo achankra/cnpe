@@ -17,6 +17,64 @@ By the end of this lesson, students will understand:
 - Why observability is a **design concern**, not an afterthought
 - How teams use observability data to decide *when to ship vs when to stop*
 
+## How This Demo Works: A Coherent Picture of Observability
+
+This lesson uses **three small, interconnected demos** to show how observability works as a complete system:
+
+### The Problem
+A service (payments-api) experiences an incident. Teams need to:
+1. **Know** if reliability is good enough (SLO check) → Decide shipping velocity
+2. **See** what happened (metrics) → Understand the scope of the incident
+3. **Understand** why it happened (logs + traces) → Fix the root cause
+
+### The Three Pillars in Action
+
+**Demo 1: SLOs as Control** (`calculate_slo.py`)
+- Shows error budget **before** and **after** the incident
+- Proves that observability drives behavior
+- When budget is healthy → move fast
+- When budget is burned → stop and stabilize
+
+**Demo 2: Metrics Answer "What?"** (`plot_metrics.py`)
+- Shows **symptom detection** (latency spike, error spike)
+- Proves that dashboards answer "did something go wrong?"
+- Metrics are the first signal that an incident occurred
+- They define the **scope** (how bad, how long)
+
+**Demo 3: Logs & Traces Answer "How?" & "Why?"** (`investigate.sh`)
+- Shows **root cause analysis** (retries, timeouts, bottlenecks)
+- Logs explain the **mechanism** (what failed)
+- Traces pinpoint the **culprit** (which dependency, which span)
+- Together they explain why metrics spiked
+
+### The Coherent Flow
+
+```
+        [Incident Occurs]
+              ↓
+   [Metrics detect it]  ← Do we have a problem?
+              ↓
+   [SLO check impact]   ← Is it serious enough to stop shipping?
+              ↓
+   [Logs explain it]    ← How did the failure propagate?
+              ↓
+   [Traces pinpoint it] ← Which exact dependency is the culprit?
+              ↓
+   [Fix deployed]       ← Error budget recovered
+              ↓
+   [Back to shipping]   ← Observability enabled the decision
+```
+
+### Why This Matters
+
+- **SLOs** = reliability as code (not opinion)
+- **Metrics** = symptoms (tell you something is wrong)
+- **Logs** = mechanisms (show how failures flow)
+- **Traces** = causality (prove which component caused it)
+- **Together** = complete incident lifecycle from detection to resolution
+
+Students will see that observability is **not about tools** (no Prometheus, no Grafana needed). It's about having the right signals at each decision point in the incident response process.
+
 ## Folder Structure
 ```
 lesson6/
