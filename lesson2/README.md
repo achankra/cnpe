@@ -167,13 +167,13 @@ The dashboard is **fully interactive**. Once running:
 
 Try these seeds to explore different operational scenarios:
 
-| Seed | Scenario | What to Notice |
-|------|----------|-----------------|
-| **42** | Balanced baseline | Moderate DORA metrics, stable SPACE scores |
-| **7** | High incidents | Higher MTTR, lower satisfaction on SPACE tab, lower VCR on PVM |
-| **99** | Efficient delivery | High deployment frequency, good satisfaction, high IAR growth |
-| **1** | Early stage | Lower metrics across all frameworks, room for improvement |
-| **100** | Mature platform | Elite DORA (5+ deploys/day), strong SPACE, healthy PVM ratios |
+| Seed | Focus | Deployments | Satisfaction | VCR | IAR |
+|------|-------|-------------|--------------|-----|-----|
+| **27** | Elite DORA | 6.8/day | 2.0/5 | 204% | -1.4% |
+| **46** | High SPACE | 5.9/day | 5.0/5 | 147% | 17.5% |
+| **20** | Strong PVM | 5.6/day | 4.0/5 | 152% | 36.0% |
+| **42** | Balanced | 5.7/day | 4.0/5 | 141% | 28.8% |
+| **7** | Degraded | 5.8/day | 2.0/5 | 161% | 28.3% |
 
 
 ## Output & Visualization
