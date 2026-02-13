@@ -63,27 +63,27 @@ trivy --version
 
 ### 1. bad/ – No Guardrails  
 
-- Represents common real-world mistakes:
-- Invalid or incorrect resource definitions
-- Insecure defaults (e.g., public storage, weak metadata settings)
-- Invalid instance types or missing constraints
+- Represents common real-world mistakes:  
+- Invalid or incorrect resource definitions  
+- Insecure defaults (e.g., public storage, weak metadata settings)  
+- Invalid instance types or missing constraints  
 
-#### Expected outcome:
+#### Expected outcome:  
 
-../scripts/validate.sh   # ❌ fails  
+../scripts/validate.sh   # ❌ fails   
 ../scripts/lint.sh       # ❌ fails  
-../scripts/scan.sh       # ❌ fails  
+../scripts/scan.sh       # ❌ fails   
 
-This is what happens before platform guardrails exist.
+This is what happens before platform guardrails exist.  
 
-### 2. good/ – Valid & Lint-Clean
+### 2. good/ – Valid & Lint-Clean  
 
-Code is:
+Code is:  
 
--Syntactically valid Terraform
--Passes terraform validate
--Passes tflint
--But still lacks strong security defaults.
+-Syntactically valid Terraform  
+-Passes terraform validate  
+-Passes tflint  
+-But still lacks strong security defaults.  
 
 #### Expected outcome:
 
@@ -92,16 +92,16 @@ Code is:
 ../scripts/scan.sh       # ❌ security findings remain  
 
 
-This reflects many teams’ definition of “done” — and why issues still escape.
+This reflects many teams’ definition of “done” — and why issues still escape.  
 
-### 3. better/ – Security Hardened
+### 3. better/ – Security Hardened  
 
-Security improvements are added:
+Security improvements are added:  
 
--IMDSv2 enforced
--Encrypted root volumes
--Monitoring enabled
--Secure S3 defaults (no public access, encryption, versioning)
+-IMDSv2 enforced  
+-Encrypted root volumes  
+-Monitoring enabled  
+-Secure S3 defaults (no public access, encryption, versioning)  
 
 #### Expected outcome:
 
@@ -115,10 +115,10 @@ This shows how guardrails guide engineers toward safer defaults.
 
 The “best” version:
 
--Passes Terraform validation
--Passes TFLint
--Passes Trivy misconfiguration scanning
--Uses pinned provider versions via .terraform.lock.hcl
+-Passes Terraform validation  
+-Passes TFLint  
+-Passes Trivy misconfiguration scanning  
+-Uses pinned provider versions via .terraform.lock.hcl  
 
 #### Expected outcome:
 
@@ -134,27 +134,27 @@ This represents a platform-approved golden path.
 From within lesson3/:
 ```
 cd bad
-../scripts/validate.sh
-../scripts/lint.sh
-../scripts/scan.sh
+../scripts/validate.sh  
+../scripts/lint.sh  
+../scripts/scan.sh  
 ```
 
 Then repeat for good/, better/, and best/.
 
 ## Why This Matters (Platform Engineering View)
 
-- Developers shouldn’t need to be Terraform or security experts
-- Guardrails provide fast, automated feedback
-- Quality and security become default behaviors
-- Pipelines stay simple; intelligence lives in reusable checks
+- Developers shouldn’t need to be Terraform or security experts  
+- Guardrails provide fast, automated feedback  
+- Quality and security become default behaviors  
+- Pipelines stay simple; intelligence lives in reusable checks  
 
-This lesson illustrates how platform teams scale impact without becoming ticket bottlenecks.
+This lesson illustrates how platform teams scale impact without becoming ticket bottlenecks.  
 
-### Notes on .terraform.lock.hcl
+### Notes on .terraform.lock.hcl  
 
-This repo intentionally includes .terraform.lock.hcl to ensure:
+This repo intentionally includes .terraform.lock.hcl to ensure:  
 
--Consistent provider versions
--Reproducible demos
--Fewer “works on my machine” issues
+-Consistent provider versions  
+-Reproducible demos  
+-Fewer “works on my machine” issues  
 
