@@ -258,3 +258,211 @@ DTR: 0.0% | Toil: 16 min | Feature: 95040 min
 | Function | Purpose |
 |----------|---------|
 | `plot_dashboard(days)` | Creates interactive 3-tab dashboard (DORA, SPACE, PVM) with live seed controls |
+
+## Customization & Extension Guide
+
+### Modifying Synthetic Data Generation
+
+To change how synthetic events are generated, edit the `generate_events()` function:
+
+**Adjust deployment frequency:**
+```python
+# Line ~50: Change deployment count per day
+deploys_today = random.randint(2, 10)  # Change to (3, 15) for more deployments
+```
+
+**Adjust incident rate:**
+```python
+# Line ~95: Change incident frequency
+incident_days = sorted(random.sample(range(days), k=max(2, days // 5)))  # days // 5 = ~20% of days
+# Change to: k=max(2, days // 3)  for more incidents (33%), or k=max(1, days // 10) for fewer (10%)
+```
+
+**Adjust PR/review cycle:**
+```python
+# Line ~66: Change daily PR count
+prs_today = random.randint(2, 6)  # Change to (1, 3) for fewer PRs, (5, 10) for more
+```
+
+**Adjust satisfaction scores:**
+```python
+# Line ~94: Modify satisfaction baseline
+satisfaction = random.choice([1, 2, 3, 4, 5])  # Change weights: [1, 1, 2, 4, 5] for higher baseline
+```
+
+### Integrating Real Data Sources
+
+To use actual metrics instead of synthetic data, replace the event generation:
+
+#### From GitHub API (PRs, Code Reviews)
+```python
+# Replace generate_events() logic with:
+import requests
+from github import Github
+
+def fetch_github_events(repo_owner, repo_name, days):
+    """Fetch real PR and review data from GitHub."""
+    g = Github(os.getenv('GITHUB_TOKEN'))
+    repo = g.get_user(repo_owner).get_repo(repo_name)
+
+    events = []
+    for pull in repo.get_pulls(state='closed'):
+        if (datetime.now(timezone.utc) - pull.created_at).days <= days:
+            events.append(Event(
+                ts=pull.created_at,
+                kind='pr_created',
+                service=repo_name,
+                pr_id=f"pr{pull.number}"
+            ))
+            # Add review events...
+    return events
+```
+
+#### From Incident Management (PagerDuty, OpsGenie)
+```python
+# Replace incident generation with API calls:
+import pdpyras  # PagerDuty Python REST API Session
+
+def fetch_pagerduty_incidents(api_token, days):
+    """Fetch real incidents from PagerDuty."""
+    session = pdpyras.APISession(api_token)
+    incidents = session.list_all('incidents', params={'statuses': ['resolved']})
+
+    events = []
+    for incident in incidents:
+        if (datetime.now(timezone.utc) - incident['created_at']).days <= days:
+            events.append(Event(ts=incident['created_at'], kind='incident_start', ...))
+            events.append(Event(ts=incident['last_status_change_at'], kind='incident_resolved', ...))
+    return events
+```
+
+#### From CI/CD Pipeline (GitHub Actions, GitLab)
+```python
+# Replace deployment tracking:
+def fetch_deployments(ci_provider='github'):
+    """Fetch real deployment data from CI/CD."""
+    if ci_provider == 'github':
+        # Use GitHub API to fetch workflow runs
+        runs = repo.get_workflow('deploy.yml').get_runs(status='completed')
+        for run in runs:
+            events.append(Event(ts=run.updated_at, kind='deploy', ...))
+    elif ci_provider == 'gitlab':
+        # Use GitLab API for deployments
+        deployments = project.deployments.list()
+        for deploy in deployments:
+            events.append(Event(ts=deploy.updated_at, kind='deploy', ...))
+```
+
+#### From Developer Surveys (Google Forms, Typeform)
+```python
+# Fetch satisfaction survey responses:
+def fetch_satisfaction_surveys(form_id, api_key):
+    """Fetch real satisfaction data from survey platform."""
+    # Using Typeform API as example
+    url = f"https://api.typeform.com/responses?form_id={form_id}"
+    headers = {"Authorization": f"Bearer {api_key}"}
+
+    response = requests.get(url, headers=headers)
+    for answer in response.json()['items']:
+        # Extract satisfaction score
+        events.append(Event(
+            ts=answer['submitted_at'],
+            kind='satisfaction_survey',
+            service='team',
+            metric_value=float(answer['answers'][0]['number'])
+        ))
+```
+
+### Extending with Custom Metrics
+
+Add new metrics by creating computation functions following the pattern:
+
+```python
+def compute_custom_metric(df: pd.DataFrame) -> pd.DataFrame:
+    """Compute your custom metric from event data."""
+    # Filter events relevant to your metric
+    custom_events = df[df["kind"] == "your_event_type"].copy()
+
+    if len(custom_events) == 0:
+        return pd.DataFrame()
+
+    # Group by time period
+    custom_events["period"] = custom_events["ts"].dt.floor("1D")
+
+    # Aggregate
+    result = custom_events.groupby("period").agg({
+        "metric_value": ["mean", "sum", "count"]
+    }).reset_index()
+
+    return result
+```
+
+Then add to the dashboard:
+```python
+# In plot_dashboard() function:
+custom = metrics["custom_metric"]
+ax_custom = fig.add_subplot(2, 2, 1)
+ax_custom.plot(custom["period"], custom["metric_value"], marker="o")
+ax_custom.set_title("Your Custom Metric", fontweight="bold")
+```
+
+### Modifying Dashboard Appearance
+
+**Change colors:**
+```python
+# In plot_dashboard(), modify button colors:
+btn_dora = Button(ax_btn_dora, "DORA", color="your_color", hovercolor="darker_shade")
+```
+
+**Add more detail to plots:**
+```python
+# Add confidence intervals, annotations, or additional data series
+ax.fill_between(dates, lower, upper, alpha=0.2)  # Confidence bands
+ax.annotate("Peak", xy=(date, value), xytext=(10, 10), arrowprops=dict(...))
+```
+
+**Change observation window:**
+```bash
+# Adjust default days in main():
+python3 metrics_demo.py --days 90  # 3-month view
+python3 metrics_demo.py --days 365 # Annual view
+```
+
+### Performance Tuning
+
+**For large datasets (>10,000 events):**
+```python
+# Use event filtering to reduce memory:
+df = df[df["ts"] > start_date]  # Filter old events
+df = df[df["kind"].isin(["deploy", "incident_start"])]  # Focus on key events
+```
+
+**Improve plot rendering:**
+```python
+# Reduce plot resolution in plot_dashboard()
+plt.rcParams['figure.dpi'] = 80  # Lower DPI for faster rendering
+```
+
+### Testing Your Customizations
+
+```bash
+# Test with small dataset
+python3 metrics_demo.py --days 7 --seed 1
+
+# Verify metrics are computed
+python3 -c "from metrics_demo import *; events = generate_events(7, 1); df = to_dataframe(events); print(compute_activity_metrics(df))"
+
+# Check for errors in custom functions
+python3 -c "from metrics_demo import *; df = to_dataframe(generate_events(14, 42)); compute_custom_metric(df)"
+```
+
+### Common Extension Patterns
+
+| Use Case | Modification |
+|----------|--------------|
+| Add team size tracking | Add `team_size` field to Event, compute `deployments_per_person` |
+| Track deployment success rate | Add `success` boolean field, compute pass rate per day |
+| Monitor on-call burden | Add `on_call_hours` events, track DTR impact |
+| Measure code quality | Parse code review comments, compute quality score |
+| Track infrastructure costs | Add cost metrics to PVM calculations |
+| Monitor SLA compliance | Correlate MTTR with SLA targets, compute compliance % |
