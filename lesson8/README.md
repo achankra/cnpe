@@ -69,6 +69,7 @@ security:
 traffic:
   strategy: canary
   canary_percentage: 20
+```
 Blue/Green configuration (configs/bluegreen.yaml)
 
 service: orders
