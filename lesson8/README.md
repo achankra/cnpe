@@ -40,7 +40,7 @@ This demo simulates that contract.
 ---
 
 ## Folder Structure 
-
+```
 lesson8/  
 ├── ingress-demo/
 │ ├── gateway.py # Secure ingress + traffic control simulation
@@ -51,7 +51,7 @@ lesson8/
 │ │ └── bluegreen.yaml
 │ └── README.md
 └── README.md
-
+```
 
 ---
 
