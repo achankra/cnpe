@@ -42,15 +42,15 @@ This demo simulates that contract.
 ## Folder Structure 
 
 lesson8/  
-├── ingress-demo/  
-│ ├── gateway.py # Secure ingress + traffic control simulation  
-│ ├── policy.py # Platform guardrails (validation)  
-│ ├── run_demo.py # Runs canary + blue/green demos back-to-back  
-│ ├── configs/  
-│ │ ├── canary.yaml  
-│ │ └── bluegreen.yaml  
-│ └── README.md  
-└── README.md  
+├── ingress-demo/
+│ ├── gateway.py # Secure ingress + traffic control simulation
+│ ├── policy.py # Platform guardrails (validation)
+│ ├── run_demo.py # Runs canary + blue/green demos back-to-back
+│ ├── configs/
+│ │ ├── canary.yaml
+│ │ └── bluegreen.yaml
+│ └── README.md
+└── README.md
 
 
 ---
