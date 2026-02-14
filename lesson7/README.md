@@ -60,7 +60,7 @@ uvicorn main:app --reload --port 8080
 - Docs are generated from  
 - SDKs can be created from  
 
-## Demo Calls (Run These Live)
+## Demo Calls
 
 **1. Simple self-service request (80% path)** 
 ```
