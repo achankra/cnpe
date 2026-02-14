@@ -61,7 +61,7 @@ No machine learning models are required.
 python3 ai_diagnose.py model.json sample_team_a.json
 ```
 
-## Demo Calls (Run These Live)
+## Demo Calls 
 
 **1. Diagnose a struggling team** 
 
