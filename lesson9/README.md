@@ -1,4 +1,4 @@
-# Lesson 9 – Automation Demo: Scaling Platforms
+# Lesson 9 – Scaling Platforms
 This lesson demonstrates how modern platform teams use **event-driven pipelines** to decouple systems, scale automation, and avoid tight integrations between tools.
 
 The demo shows how a **single deployment event** can trigger multiple independent automations — including **automated issue creation** — without modifying the original producer.
