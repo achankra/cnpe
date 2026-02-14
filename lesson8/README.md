@@ -14,50 +14,50 @@ guardrails, and automation** rather than infrastructure plumbing.
 
 By the end of this lesson, students will understand:
 
-- What a **Golden Path** really means in practice
-- Why ingress and traffic control belong to the **platform**, not individual teams
-- How platforms enforce **secure defaults** (TLS, DNS boundaries)
-- The difference between **canary** and **blue/green** traffic strategies
-- How guardrails prevent invalid configurations before runtime
-- How “before vs after” automation changes delivery behavior
+- What a **Golden Path** really means in practice  
+- Why ingress and traffic control belong to the **platform**, not individual teams  
+- How platforms enforce **secure defaults** (TLS, DNS boundaries)  
+- The difference between **canary** and **blue/green** traffic strategies  
+- How guardrails prevent invalid configurations before runtime  
+- How “before vs after” automation changes delivery behavior  
 
 ---
 
 ## Core Idea
 
-Developers should declare **intent**:
+Developers should declare **intent**:  
 
-> “Expose my service securely and manage traffic safely.”
+> “Expose my service securely and manage traffic safely.”  
 
-Platforms should handle **everything else**:
-- TLS
-- host routing
-- traffic strategies
-- validation and guardrails
+Platforms should handle **everything else**:  
+- TLS   
+- host routing  
+- traffic strategies  
+- validation and guardrails  
 
 This demo simulates that contract.
 
 ---
 
-## Folder Structure
+## Folder Structure 
 
-lesson8/
-├── ingress-demo/
-│ ├── gateway.py # Secure ingress + traffic control simulation
-│ ├── policy.py # Platform guardrails (validation)
-│ ├── run_demo.py # Runs canary + blue/green demos back-to-back
-│ ├── configs/
-│ │ ├── canary.yaml
-│ │ └── bluegreen.yaml
-│ └── README.md
-└── README.md
+lesson8/  
+├── ingress-demo/  
+│ ├── gateway.py # Secure ingress + traffic control simulation  
+│ ├── policy.py # Platform guardrails (validation)  
+│ ├── run_demo.py # Runs canary + blue/green demos back-to-back  
+│ ├── configs/  
+│ │ ├── canary.yaml  
+│ │ └── bluegreen.yaml  
+│ └── README.md  
+└── README.md  
 
 
 ---
 
-## Developer Intent (Declarative Config)
+## Developer Intent (Declarative Config)  
 
-### Canary configuration (`configs/canary.yaml`)
+### Canary configuration (`configs/canary.yaml`)  
 
 ```yaml
 service: orders
