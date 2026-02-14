@@ -1,4 +1,4 @@
-# Lesson 10 – AI demo: intelligent diagnostics & maturity tracking
+# Lesson 10 – Future of DevEx: intelligent diagnostics & maturity tracking
 
 This lesson demonstrates how platform teams can use **intelligent diagnostics** to continuously assess platform maturity, detect friction, and prioritize
 improvements.
