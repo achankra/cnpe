@@ -17,7 +17,7 @@ By the end of this lesson, students will understand:
 - Why observability is a **design concern**, not an afterthought
 - How teams use observability data to decide *when to ship vs when to stop*
 
-## How This Demo Works: A Coherent Picture of Observability
+## How This Demo Works: A Comprehensive Picture of Observability
 
 This lesson uses **three small, interconnected demos** to show how observability works as a complete system:
 
@@ -47,7 +47,7 @@ A service (payments-api) experiences an incident. Teams need to:
 - Traces pinpoint the **culprit** (which dependency, which span)
 - Together they explain why metrics spiked
 
-### The Coherent Flow
+### The  Flow
 
 ```
         [Incident Occurs]
